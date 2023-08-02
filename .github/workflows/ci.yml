@@ -1,15 +1,18 @@
 name: 构建页面
 on:
   push:  # 指定触发事件
-    branches:
-      - main  # 指定触发 action 的分支
+    branches: [main] # 指定触发 action 的分支
+  pull_request:
+    branches: [main]
 
 jobs:
-  main:
+  build:
+    # runs-on 指定job任务运行所需要的虚拟机环境
     runs-on: ubuntu-latest
+    
+    # steps是每个Job的运行步骤，可以包含一个或多个步骤
     steps:
-
-    # 拉取github仓库代码
+    # action命令，切换分支获取源码
     - name: Checkout
       uses: actions/checkout@v3
       with:
